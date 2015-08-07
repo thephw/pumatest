@@ -1,4 +1,4 @@
-#daemonize true
+daemonize true
 workers 4
 threads 0, 6
 worker_timeout 45
