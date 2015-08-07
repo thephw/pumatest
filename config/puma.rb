@@ -1,4 +1,4 @@
-#daemonize true
+daemonize true
 workers 4
 threads 0, 6
 worker_timeout 45
@@ -10,9 +10,10 @@ environment ENV['RACK_ENV'] || 'development'
 on_worker_boot do
   ActiveRecord::Base.establish_connection
 end
-directory "/srv/www/melody/current"
-pidfile  "/srv/www/melody/shared/pids/melody.pid"
-state_path "/srv/www/melody/shared/puma/melody.state"
-stdout_redirect '/srv/www/melody/current/log/puma.log', '/srv/www/melody/current/log/puma.error.log', true
-bind "unix:///srv/www/melody/shared/puma/melody.sock"
-activate_control_app "unix:///srv/www/melody/shared/puma/melody_control.sock"
+basedir = "Users/patrickwiseman"
+directory "/#{basedir}/src/pumatest"
+pidfile  "/#{basedir}/src/pumatest/tmp/pumatest.pid"
+state_path "/#{basedir}/src/pumatest/tmp/pumatest.state"
+stdout_redirect "/#{basedir}/src/pumatest/log/puma.log", "/#{basedir}/src/pumatest/log/puma.error.log", true
+bind "unix:///#{basedir}/src/pumatest/tmp/pumatest.sock"
+activate_control_app "unix:///#{basedir}/src/pumatest/tmp/melody_control.sock"
